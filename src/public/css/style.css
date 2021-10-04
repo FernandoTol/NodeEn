@@ -10,6 +10,10 @@
 .border-bottom{
     border-bottom: 3px solid #d6d5d5 !important;
 }
+
+#menuNavbar{
+    width: 100%;
+}
 @media (min-widh: 768px){
     .imglogo{
         max-width: 30%
