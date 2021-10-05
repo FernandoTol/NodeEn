@@ -8,8 +8,8 @@ passport.use('local.signup', new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',
     passReqToCallback: true
-}, async (req, done) => {
-    const { first_name, last_name, user_name, email, password } = req.body;
+}, async (req, email, password, done) => {
+    const { first_name, last_name, user_name } = req.body;
     let last_login = new Date();
     let is_active = 1;
     let data_joined = new Date();
@@ -28,23 +28,33 @@ passport.use('local.signup', new LocalStrategy({
 
     };
     newUser.password = await bcrypt.encryptPassword(password);
-    console.log(newUser);
-    await pool.beginTransaction((error) => {
+    //console.log(newUser);
+    await pool.beginTransaction(async (error) => {
         if (error) { throw error; }
-        pool.query("INSERT INTO user SET ?", newUser, (err, result) => {
-            if (err) {
-                pool.rollback(() => {
-                    throw err;
-                });
-            }
-        });
-        pool.commit((err) => {
-            if (err) {
-                pool.rollback(() => {
-                    throw err;
-                });
-            }
-            console.log('Transaction Complete.');
-        });
+        const rows = await pool.query('SELECT email FROM user WHERE email =?', [email]);
+        if (0 == rows.lenght) {
+            await pool.query("INSERT INTO user SET ?", newUser, (err, result) => {
+                if (err) {
+                    pool.rollback(() => {
+                        throw err;
+                    });
+                }
+            });
+            pool.commit((err) => {
+                if (err) {
+                    pool.rollback(() => {
+                        throw err;
+                    });
+                }
+                console.log('Transaction Complete.');
+            });
+        } else {
+            errors = [{
+                "location": "body",
+                "msg": " El email ya esta registrado",
+                "param": "email"
+            }]
+            req.res.render('auth/signup', { data: req.body, errors: errors });
+        }
     });
 }));

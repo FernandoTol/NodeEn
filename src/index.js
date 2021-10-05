@@ -39,6 +39,11 @@ app.use(express.urlencoded({extended: false})); // solo recive texto para cargar
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use((req, res, next) =>{
+    app.locals.res = res;
+    next();
+});
+
 app.use(require('./routes/indexController'));
 app.use(require('./routes/authController'));
 app.use(express.static(path.join(__dirname, 'public')));/* */
