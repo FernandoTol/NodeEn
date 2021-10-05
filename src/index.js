@@ -1,6 +1,7 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
-const path = require('path')
+const path = require('path');
+const passport = require('passport');
 
 //intialization
 const app = express();
@@ -17,6 +18,11 @@ app.engine('.hbs', exphbs({
     extname: '.hbs'
 }));
 app.set('view engine', '.hbs')
+
+// Middlewares
+app.use(express.urlencoded({extended: false})); // solo recive texto para cargar img se debe poner como verdadero
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(require('./routes/indexController'));
 app.use(require('./routes/authController'));
