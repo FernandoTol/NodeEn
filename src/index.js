@@ -5,7 +5,7 @@ const passport = require('passport');
 
 //intialization
 const app = express();
-
+require('./lib/passport');
 //setings
 app.set('port', process.env.PORT || 8080);
 app.set('views', path.join(__dirname, 'views')); /* se especifica el nombre de la carpeta que se esta buscando con el metodo
