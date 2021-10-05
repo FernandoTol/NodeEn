@@ -9,7 +9,7 @@ router.get('/signup', (req, res) => {
 router.post('/signup', [
     check('first_name').not().isEmpty().withMessage('First name is required'),
     check('last_name').not().isEmpty().withMessage('Last name name is required'),
-    check('username').not().isEmpty().withMessage('User name name is required'),
+    check('user_name').not().isEmpty().withMessage('User name name is required'),
     check('email').not().isEmpty().withMessage('Email is required')
         .isEmail().withMessage('Invalid Email'), // El .email es para poder comprebar si es un email valido
     check('password').not().isEmpty().withMessage('password is required'),
