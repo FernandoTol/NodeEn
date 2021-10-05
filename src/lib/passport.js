@@ -1,6 +1,7 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('./bcrypt');
+const pool = require('../conection')
 
 passport.use('local.signup',new LocalStrategy({
     passReqToCallback: true
