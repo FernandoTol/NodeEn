@@ -44,8 +44,9 @@ app.use((req, res, next) =>{
     next();
 });
 
-app.use(require('./routes/indexController'));
+app.use(require('./routes/indexController'));  // Las vistas de las rutas de las diferentes paginas
 app.use(require('./routes/authController'));
+app.use(require('./routes/pollControler'));
 app.use(express.static(path.join(__dirname, 'public')));/* */
 
 //starting

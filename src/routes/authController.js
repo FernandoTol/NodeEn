@@ -4,7 +4,7 @@ const router = express.Router();
 const { check, validationResult } = require('express-validator');
 
 router.get('/signup', (req, res) => {
-    res.render('auth/signup');
+    res.render('auth/signup'); //mi ruta de la vista en views
 });
 router.post('/signup', [
     check('first_name').not().isEmpty().withMessage('First name is required'),
@@ -23,8 +23,13 @@ router.post('/signup', [
         next();
     }
 }, passport.authenticate('local.signup', {
-    successRedirect: '/polls',
+    successRedirect: '/listPoll',
     failureRedirect: '/signup',
     //failureFlash: true //
 }));
+router.get('/login', (req, res) => {
+    res.render('auth/signup'); //mi ruta de la vista en views
+});
+
+
 module.exports = router;
