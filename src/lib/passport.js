@@ -93,3 +93,35 @@ passport.deserializeUser(async (id, done) => {
     const rows = await pool.query('SELECT * FROM user WHERE id = ?', [id]);
     done(null, rows[0]);
 });
+
+passport.use('local.signin', new LocalStrategy( // para capturar los datos del signin
+    {
+        usernameField: 'email',
+        passwordField: 'password',
+        passReqToCallback: true
+    }, async (req, email, password, done) => {
+        const rows = await pool.query('SELECT * FROM user WHERE email = ?', [email]);
+        if (0 < rows.length) {
+            const user = rows[0];
+            const validatePassword = await bcrypt.matchPassword(password, user.password); // metodo para poder cotejar las contraseñas esete proceso se describe en bcrypt.js ademas de que se le agrega un await para esperar el proceso y poder  validar la cotraseña de manera correcta
+            if (validatePassword) {
+                done(null, user);
+            } else { // si se ingresa la contraseña incorrecta
+                errors = [{
+                    "location": "body",
+                    "msg": "Contraseña incorrecta",
+                    "param": "password"
+                }]
+                req.res.render('auth/signin', { data: req.body, errors: errors });
+            }
+        } else {// si el email no esta registrado
+            errors = [{
+                "location": "body",
+                "msg": "El email no esta registrado",
+                "param": "email"
+            }]
+            req.res.render('auth/signin', { data: req.body, errors: errors });
+        }
+    }));
+
+

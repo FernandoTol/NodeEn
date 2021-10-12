@@ -10,22 +10,28 @@
         </button>
         <div id="menuNavbar">
             <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                {{#if user}}
                 <ul class="navbar-nav">
+                    <li>
+                        <a class="nav-link text-dark"> Bienvenido: {{user.user_name}} </a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/logout">Logout</a>
                     </li>
                 </ul>
+                {{else}}
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
                         <a class="nav-link text-dark" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="/login">Login</a>
+                        <a class="nav-link text-dark" href="/signin">Login</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark" href="/signup">Registrar</a>
                     </li>
                 </ul>
+                {{/if}}
             </div>
         </div>
     </div>
