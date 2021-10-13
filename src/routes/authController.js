@@ -2,8 +2,9 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
+const {isNotLoggedIn} = require('../lib/auth');
 
-router.get('/signup', (req, res) => {
+router.get('/signup',isNotLoggedIn,(req, res) => {
     res.render('auth/signup'); //mi ruta de la vista en views
 });
 router.post('/signup', [
@@ -29,7 +30,7 @@ router.post('/signup', [
 }));
 
 
-router.get('/signin', (req, res) => {
+router.get('/signin', isNotLoggedIn, (req, res) => {
     res.render('auth/signin'); //mi ruta de la vista en views
 });
 
