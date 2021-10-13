@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 09-10-2021 a las 00:48:41
--- Versión del servidor: 10.4.16-MariaDB
--- Versión de PHP: 7.4.12
+-- Tiempo de generación: 14-10-2021 a las 00:45:12
+-- Versión del servidor: 10.4.21-MariaDB
+-- Versión de PHP: 8.0.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `encuesta2`
+-- Base de datos: `encuestas01`
 --
 
 -- --------------------------------------------------------
@@ -51,7 +51,9 @@ INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `last_login`, `is_
 (4, 'operador', 'lf', 'ejemplo@jot.com.mx', '2021-10-08 15:21:31', 1, '2021-10-08 15:21:31', '$2a$10$.ebGQZPDLaicFtGyx.Xi4um8enCVufMUwHb/C59l1oAf5XMi1NINe', b'1', 'eaoeao'),
 (5, 'operador', 'lf', 'lfbanueloss@jot.com.mx', '2021-10-08 15:24:52', 1, '2021-10-08 15:24:52', '$2a$10$E..FSARmJNn.9g1zTRDz5unmRCWp5ZlYGCnGA6S4ib6mPsiGqSNH2', b'1', 'lufebato'),
 (6, 'luis fernando', 'bañuelos', 'ejewplo@gmail.com', '2021-10-08 15:29:02', 1, '2021-10-08 15:29:02', '$2a$10$3jGpojdtO4H1h9feeHltZuGcs9lDjVMhp5i74NZM07yoR.olMkR9a', b'1', 'lufebato'),
-(7, 'luis fernando', 'bañuelos', 'ejemplo@gmail.com', '2021-10-08 15:30:39', 1, '2021-10-08 15:30:39', '$2a$10$ZmuLdcowkxht8kdhQLvf1eWugGDhxeu0N5WE.HpVVjMC9iqvqlcaa', b'1', 'lufebato');
+(7, 'luis fernando', 'bañuelos', 'ejemplo@gmail.com', '2021-10-08 15:30:39', 1, '2021-10-08 15:30:39', '$2a$10$ZmuLdcowkxht8kdhQLvf1eWugGDhxeu0N5WE.HpVVjMC9iqvqlcaa', b'1', 'lufebato'),
+(8, 'luis fernando', 'bañuelos', 'toledo@gmail.com', '2021-10-13 10:49:33', 1, '2021-10-13 10:49:33', '$2a$10$irUv6jdjEPqdlaVPrV1M/u0kXGo3J5zmqvSaGEKHxCMc47RnfkgFS', b'1', 'eaoeao'),
+(9, 'lluis ', 'feranndo ', 'toledo.lu@gmail.com', '2021-10-13 11:15:56', 1, '2021-10-13 11:15:56', '$2a$10$Jna1.AYvfynwRPYmXwUqcO2kF6VvrGETo7FDxz6zeo0j1vkrBElOi', b'1', 'eaoeao');
 
 --
 -- Índices para tablas volcadas
@@ -71,7 +73,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
