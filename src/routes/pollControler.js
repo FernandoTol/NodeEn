@@ -25,7 +25,7 @@ router.post('/createPoll',isLoggedIn, async (req, res) => {
     await pool.beginTransaction((err)=>{
         if (err) { throw err;}
             pool.query('INSERT INTO polls SET ?', polls,(err, result) =>{
-                if (err) { 
+                if (err) {
                     pool.rollback(() => {
                         throw err;
                     });
